@@ -1,0 +1,28 @@
+version: '2'
+services:
+
+  idp:
+    environment:
+      - NODE_ENV=test
+    build: ./idp
+    depends_on:
+     - redis
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+
+  converse:
+    environment:
+      - NODE_ENV=integration
+      #- MONGO_URL=mongodb:27017/converse_test
+      #- MONGO_URL=mongodb://127.0.0.1:27017/converse_test
+    build: ./converse
+    ports:
+      - "3030:3030"
+    expose:
+      - "3030"
+
+  redis:
+    image: redis
+
