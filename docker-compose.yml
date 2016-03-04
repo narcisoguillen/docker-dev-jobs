@@ -18,10 +18,7 @@ services:
       - RACK_ENV=test
       - DATABASE_PORT_3306_TCP_ADDR=mysql
       - LANG=en_US.UTF-8
-      - RAILS_JOB_APP_PASSWORD=Rails.Jobs.App
-      - RAILS_JOB_APP_USERNAME=railsjobs@tangosource.com
       - RAILS_SERVE_STATIC_FILES=enabled
-      - BUILDPACK_URL=git://github.com/qnyp/heroku-buildpack-ruby-bower.git#run-bower
     build: ./sp
     command: bash -c "sleep 5; rake db:drop; rake db:create; rake db:migrate; rake db:seed;bundle exec rails s -p 3001 -b 0.0.0.0"
     depends_on:
