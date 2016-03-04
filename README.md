@@ -17,7 +17,7 @@ Start services
 
 ## Update
 
-If you need to update you local docker images with lates github code just do.
+If you need to update you local docker images with lates github code just do. This will NOT re install everything, it will just fetch latest changes and re install dependencies.
 
      make update
 
