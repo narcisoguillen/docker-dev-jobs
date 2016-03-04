@@ -1,6 +1,7 @@
 version: '2'
 services:
 
+
   idp:
     environment:
       - NODE_ENV=docker
@@ -11,6 +12,10 @@ services:
       - "3000:3000"
     expose:
       - "3000"
+    links:
+      - sp
+    extra_hosts:
+     - "rails-jobs.docker:192.168.99.100"
 
   sp:
     environment:
@@ -29,6 +34,8 @@ services:
       - "3001:3001"
     expose:
       - "3001"
+    extra_hosts:
+     - "rails-jobs.docker:192.168.99.100"
 
   converse:
     environment:
@@ -40,6 +47,10 @@ services:
       - "3030:3030"
     expose:
       - "3030"
+    links:
+      - sp
+    extra_hosts:
+     - "rails-jobs.docker:192.168.99.100"
 
   redis:
     image: redis
