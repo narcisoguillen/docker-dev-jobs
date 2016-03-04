@@ -21,6 +21,12 @@ If you need to update you local docker images with lates github code just do. Th
 
      make update
 
+## Update only 1 service
+
+Update a single service sending `s` argument
+
+     make only s=idp
+
 ## Stop
 
 Stop docker
