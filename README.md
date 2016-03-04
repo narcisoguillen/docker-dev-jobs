@@ -3,7 +3,7 @@
 ## Set up
 
 First download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).
-Create a github token with repo scope [here](https://www.docker.com/products/docker-toolbox) then place the token [here](https://github.com/narcisoguillen/docker-dev-jobs/blob/master/makefile#L2).
+Create a github token with repo scope [here](https://github.com/settings/tokens) then place the token [here](https://github.com/narcisoguillen/docker-dev-jobs/blob/master/makefile#L2).
 
 ## Install
 
