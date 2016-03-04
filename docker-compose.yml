@@ -6,11 +6,32 @@ services:
       - NODE_ENV=test
     build: ./idp
     depends_on:
-     - redis
+      - redis
     ports:
       - "3000:3000"
     expose:
       - "3000"
+
+  sp:
+    environment:
+      - RAILS_ENV=test
+      - RACK_ENV=test
+      - DATABASE_PORT_3306_TCP_ADDR=mysql
+      - LANG=en_US.UTF-8
+      - RAILS_JOB_APP_PASSWORD=Rails.Jobs.App
+      - RAILS_JOB_APP_USERNAME=railsjobs@tangosource.com
+      - RAILS_SERVE_STATIC_FILES=enabled
+      - BUILDPACK_URL=git://github.com/qnyp/heroku-buildpack-ruby-bower.git#run-bower
+    build: ./sp
+    command: bash -c "sleep 5; rake db:drop; rake db:create; rake db:migrate; rake db:seed;bundle exec rails s -p 3001 -b 0.0.0.0"
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    ports:
+      - "3001:3001"
+    expose:
+      - "3001"
 
   converse:
     environment:
@@ -26,3 +47,13 @@ services:
   redis:
     image: redis
 
+  mysql:
+    image: mysql:5.5
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: railsjobs_test
+      MYSQL_USER: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
