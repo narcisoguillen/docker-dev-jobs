@@ -54,6 +54,7 @@ services:
 
   redis:
     image: redis
+    restart: always
 
   mysql:
     image: mysql:5.5
